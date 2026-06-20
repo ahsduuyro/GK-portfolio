@@ -708,3 +708,23 @@ body {
         margin-bottom: 4px;
     }
 }
+
+
+.hero-ghost-face {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('bio1.png');
+    background-size: cover;
+    background-position: right center;
+    /* Cinematic effects */
+    filter: grayscale(100%) contrast(1.2);
+    opacity: 0.15;
+    z-index: 1;
+    /* Fade out towards the left so text remains readable */
+    mask-image: linear-gradient(to left, black 30%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, black 30%, transparent 100%);
+    pointer-events: none;
+}
