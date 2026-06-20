@@ -714,17 +714,66 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 50%;
+    width: 70%; /* Increase width to occupy more of the right space */
     height: 100%;
+    
+    /* Anchor to the right edge */
     background-image: url('bio1.png');
-    background-size: cover;
+    background-size: contain; /* Use 'contain' so it doesn't get cut off weirdly */
+    background-repeat: no-repeat;
     background-position: right center;
-    /* Cinematic effects */
+    
     filter: grayscale(100%) contrast(1.2);
-    opacity: 0.15;
+    opacity: 0.12; /* Slightly lower opacity for better text contrast */
     z-index: 1;
-    /* Fade out towards the left so text remains readable */
-    mask-image: linear-gradient(to left, black 30%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to left, black 30%, transparent 100%);
     pointer-events: none;
+    
+    /* The Magic: A wide gradient fade that leaves the left 40% completely empty */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
 }
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-ghost-face {
+        width: 100%; /* Take full width on small screens to ensure visibility */
+        opacity: 0.1; /* Lower opacity on mobile so it doesn't clash with text */
+        -webkit-mask-image: linear-gradient(to left, black 40%, transparent 100%);
+        mask-image: linear-gradient(to left, black 40%, transparent 100%);
+    }
+}
+
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-card {
+    height: 350px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #111;
+}
+
+.gallery-card img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images fill the box nicely */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.gallery-card img.active {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .portfolio-grid { grid-template-columns: 1fr; } }

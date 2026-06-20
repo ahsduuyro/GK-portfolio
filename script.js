@@ -157,3 +157,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
+
+const images = [
+    'img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg','img6.jpg','img7.jpg','img8.jpg','img9.jpg','img10.jpg',
+    'img11.jpg','img12.jpg','img13.jpg','img14.jpg','img15.jpg','img16.jpg','img17.jpg','img18.jpg','img19.jpg','img20.jpg',
+    'img21.jpg','img22.jpg'
+];
+
+const grid = document.getElementById('portfolioGrid');
+
+// Create 6 cards
+for (let i = 0; i < 6; i++) {
+    const card = document.createElement('div');
+    card.className = 'gallery-card';
+    
+    // Determine how many images go in this box (4 or 2)
+    const count = (i === 5) ? 2 : 4;
+    const startIndex = i * 4;
+    
+    for (let j = 0; j < count; j++) {
+        const img = document.createElement('img');
+        img.src = images[startIndex + j] || images[0];
+        if (j === 0) img.classList.add('active');
+        card.appendChild(img);
+    }
+    grid.appendChild(card);
+}
+
+// Start Slideshows
+document.querySelectorAll('.gallery-card').forEach(card => {
+    const imgs = card.querySelectorAll('img');
+    let idx = 0;
+    setInterval(() => {
+        imgs[idx].classList.remove('active');
+        idx = (idx + 1) % imgs.length;
+        imgs[idx].classList.add('active');
+    }, 3000 + (Math.random() * 2000)); // Random timing makes it look premium
+});
