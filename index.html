@@ -24,16 +24,17 @@
 
     <header class="main-header">
         <div class="logo-block">
-            <a href="#" class="brand-logo">GK<span class="dot">.</span></a>
+            <a href="index.html" class="brand-logo">GK<span class="dot">.</span></a>
         </div>
         
         <nav class="nav-menu desktop-nav">
-            <a href="#collections" class="nav-item">Collections</a>
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="#gallery" class="nav-item">Gallery</a>
             <a href="#about" class="nav-item">About</a>
             <a href="#contact" class="nav-item">Contact</a>
         </nav>
 
-        <button class="camera-dial-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+        <button class="camera-dial-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
             <div class="dial-ridges"></div>
             <div class="dial-face">
                 <span class="dial-indicator"></span>
@@ -47,15 +48,16 @@
     </header>
 
     <div class="mobile-nav-overlay" id="mobileNav">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
         <nav class="mobile-menu-links">
-            <a href="#collections" class="mobile-nav-item">Collections</a>
+            <a href="index.html" class="mobile-nav-item">Home</a>
+            <a href="#gallery" class="mobile-nav-item">Gallery</a>
             <a href="#about" class="mobile-nav-item">About</a>
             <a href="#contact" class="mobile-nav-item">Contact</a>
         </nav>
     </div>
 
     <section class="hero-section">
-        <!-- Add this ghost image layer -->
         <div class="hero-ghost-face"></div>
         <div class="hero-content">
             <p class="hero-reveal-tag">Based in Chennai — Available Worldwide</p>
@@ -66,7 +68,7 @@
             </h1>
         </div>
         
-        <a href="#collections" class="scroll-indicator" aria-label="Scroll downward">
+        <a href="#gallery" class="scroll-indicator" aria-label="Scroll downward">
             <div class="mouse-capsule">
                 <span class="wheel-dot"></span>
             </div>
@@ -74,10 +76,23 @@
         </a>
     </section>
 
-   <section class="work-section" id="collections">
-    <h2 class="section-title">Photo Collections</h2>
-    <div class="portfolio-grid" id="portfolioGrid">
+   <section class="work-section" id="gallery">
+    <h2 class="section-title">Gallery</h2>
+    <div class="collection-carousel">
+        <div class="carousel-card">
+            <div class="carousel-frame"></div>
+            <div class="photo-capture-overlay" id="captureOverlay"></div>
+            <img id="carouselImage" src="img1.jpg" alt="Featured collection photo" loading="lazy">
+            <div class="carousel-controls">
+                <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous photo">‹</button>
+                <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Next photo">›</button>
+            </div>
+            <div class="carousel-dots" id="carouselIndicators"></div>
         </div>
+        <div class="collection-actions">
+            <a href="gallery.html" class="view-more-btn">View More</a>
+        </div>
+    </div>
 </section>
 
     <section class="about-section" id="about">

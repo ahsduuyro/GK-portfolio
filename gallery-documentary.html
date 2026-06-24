@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Documentary Frames | Ganesh Kumar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Work+Sans:wght@300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-block">
+            <a href="index.html" class="brand-logo">GK<span class="dot">.</span></a>
+        </div>
+        <nav class="nav-menu desktop-nav">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="gallery.html" class="nav-item">Gallery</a>
+            <a href="index.html#about" class="nav-item">About</a>
+            <a href="index.html#contact" class="nav-item">Contact</a>
+        </nav>
+        <button class="camera-dial-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <div class="dial-ridges"></div>
+            <div class="dial-face">
+                <span class="dial-indicator"></span>
+                <div class="dial-modes-icons">
+                    <span class="mode-lbl mode-m">M</span>
+                    <span class="mode-lbl mode-auto">AUTO</span>
+                    <span class="mode-lbl mode-scen">▶</span>
+                </div>
+            </div>
+        </button>
+        </button>
+    </header>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+        <nav class="mobile-menu-links">
+            <a href="index.html" class="mobile-nav-item">Home</a>
+            <a href="gallery.html" class="mobile-nav-item">Gallery</a>
+            <a href="index.html#about" class="mobile-nav-item">About</a>
+            <a href="index.html#contact" class="mobile-nav-item">Contact</a>
+        </nav>
+    </div>
+
+    <main class="work-section" style="padding-top: 160px;">
+        <h1 class="section-title">Documentary Frames</h1>
+        <p class="gallery-intro">Candid moments, human stories and unscripted life. Download frames that feel like authentic documentary captures.</p>
+
+        <div class="place-info-block" style="margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between;">
+            <div>
+                <span class="place-count" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55);">7 downloadable frames</span>
+                <p style="max-width: 720px; color: rgba(255,255,255,0.74); line-height: 1.8; margin-top: 10px;">A quiet dip into visual storytelling — each image is available for download and true to the moment.</p>
+            </div>
+            <a href="gallery.html" class="view-more-btn">Back to Gallery</a>
+        </div>
+
+        <div class="place-photo-grid">
+            <a href="img17.jpg" download>
+                <img src="img17.jpg" alt="Documentary frame 1">
+            </a>
+            <a href="img18.jpg" download>
+                <img src="img18.jpg" alt="Documentary frame 2">
+            </a>
+            <a href="img19.jpg" download>
+                <img src="img19.jpg" alt="Documentary frame 3">
+            </a>
+            <a href="img20.jpg" download>
+                <img src="img20.jpg" alt="Documentary frame 4">
+            </a>
+            <a href="img21.jpg" download>
+                <img src="img21.jpg" alt="Documentary frame 5">
+            </a>
+            <a href="img22.jpg" download>
+                <img src="img22.jpg" alt="Documentary frame 6">
+            </a>
+            <a href="img4.jpg" download>
+                <img src="img4.jpg" alt="Documentary frame 7">
+            </a>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 80px;">
+        <a href="mailto:hello@ganeshkumar.in" class="footer-email">hello@ganeshkumar.in</a>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/ganesh_manohar" target="_blank" class="footer-social-item">Instagram</a>
+            <a href="https://wa.me/919677225041" target="_blank" class="footer-social-item">WhatsApp</a>
+        </div>
+        <p class="copyright-text">&copy; 2026 Ganesh Kumar. Visual Diary.</p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="focus-ring-btn" aria-label="Scroll to top">
+        <div class="dslr-body-frame">
+            <div class="dslr-viewfinder-bump"></div>
+        </div>
+        <div class="lens-barrel">
+            <svg class="progress-ring" width="56" height="56">
+                <circle class="progress-ring__circle-bg" cx="28" cy="28" r="24" stroke-width="2" fill="transparent"/>
+                <circle id="scrollProgressCircle" class="progress-ring__circle" cx="28" cy="28" r="24" stroke-width="2" fill="transparent"/>
+            </svg>
+            <div class="lens-shutter-dot">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </div>
+        </div>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

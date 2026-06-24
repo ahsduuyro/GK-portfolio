@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const isOpened = mobileNav.classList.toggle("open");
             menuToggle.classList.toggle("active", isOpened);
             document.body.style.overflow = isOpened ? "hidden" : "";
+            // Accessibility: reflect expanded state and update label
+            menuToggle.setAttribute('aria-expanded', isOpened ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', isOpened ? 'Close navigation menu' : 'Toggle Navigation Menu');
         });
 
         // Close layout drawer on items selection
@@ -43,6 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.body.style.overflow = "";
             });
         });
+        // Close button inside mobile overlay
+        const mobileCloseBtn = document.getElementById('mobileClose');
+        if (mobileCloseBtn) {
+            mobileCloseBtn.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Toggle Navigation Menu');
+                document.body.style.overflow = '';
+            });
+        }
     }
 
     // --- MASONRY SORT / FILTER ENGINE ---
@@ -158,39 +172,169 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-const images = [
-    'img1.jpg','img2.jpg','img3.jpg','img4.jpg','img5.jpg','img6.jpg','img7.jpg','img8.jpg','img9.jpg','img10.jpg',
-    'img11.jpg','img12.jpg','img13.jpg','img14.jpg','img15.jpg','img16.jpg','img17.jpg','img18.jpg','img19.jpg','img20.jpg',
-    'img21.jpg','img22.jpg'
+const carouselImage = document.getElementById('carouselImage');
+const prevButton = document.getElementById('carouselPrev');
+const nextButton = document.getElementById('carouselNext');
+const indicatorsContainer = document.getElementById('carouselIndicators');
+const captureOverlay = document.getElementById('captureOverlay');
+
+const slides = [
+    { src: 'img1.jpg' },
+    { src: 'img5.jpg' },
+    { src: 'img9.jpg' },
+    { src: 'img13.jpg' },
+    { src: 'img17.jpg' }
 ];
 
-const grid = document.getElementById('portfolioGrid');
+let currentSlide = 0;
+let autoAdvanceTimer = null;
 
-// Create 6 cards
-for (let i = 0; i < 6; i++) {
-    const card = document.createElement('div');
-    card.className = 'gallery-card';
-    
-    // Determine how many images go in this box (4 or 2)
-    const count = (i === 5) ? 2 : 4;
-    const startIndex = i * 4;
-    
-    for (let j = 0; j < count; j++) {
-        const img = document.createElement('img');
-        img.src = images[startIndex + j] || images[0];
-        if (j === 0) img.classList.add('active');
-        card.appendChild(img);
-    }
-    grid.appendChild(card);
+const isCarouselPage = Boolean(carouselImage && prevButton && nextButton && indicatorsContainer && captureOverlay);
+
+function setSlide(index) {
+    const slide = slides[(index + slides.length) % slides.length];
+    currentSlide = (index + slides.length) % slides.length;
+
+    if (!carouselImage) return;
+    const nextImage = new Image();
+    nextImage.src = slide.src;
+    nextImage.onload = () => {
+        carouselImage.classList.add('fade-out');
+        setTimeout(() => {
+            carouselImage.src = slide.src;
+            carouselImage.alt = slide.title || 'Collection photo';
+            carouselImage.classList.remove('fade-out');
+            carouselImage.classList.add('fade-in');
+            setTimeout(() => carouselImage.classList.remove('fade-in'), 450);
+        }, 200);
+    };
+
+    updateIndicators();
+    triggerCaptureEffect();
 }
 
-// Start Slideshows
-document.querySelectorAll('.gallery-card').forEach(card => {
-    const imgs = card.querySelectorAll('img');
-    let idx = 0;
-    setInterval(() => {
-        imgs[idx].classList.remove('active');
-        idx = (idx + 1) % imgs.length;
-        imgs[idx].classList.add('active');
-    }, 3000 + (Math.random() * 2000)); // Random timing makes it look premium
+function createIndicator(index) {
+    if (!indicatorsContainer) return null;
+    const indicator = document.createElement('button');
+    indicator.className = 'carousel-indicator';
+    indicator.type = 'button';
+    indicator.dataset.index = index;
+    indicator.setAttribute('aria-label', `Go to slide ${index + 1}`);
+    indicator.addEventListener('click', () => {
+        setSlide(index);
+        resetAutoAdvance();
+    });
+    indicatorsContainer.appendChild(indicator);
+    return indicator;
+}
+
+function updateIndicators() {
+    if (!indicatorsContainer) return;
+    indicatorsContainer.innerHTML = '';
+    slides.forEach((_, index) => {
+        const indicator = createIndicator(index);
+        if (indicator && index === currentSlide) indicator.classList.add('active');
+    });
+}
+
+function triggerCaptureEffect() {
+    if (!captureOverlay) return;
+    captureOverlay.classList.add('active');
+    setTimeout(() => captureOverlay.classList.remove('active'), 800);
+}
+
+function resetAutoAdvance() {
+    if (!isCarouselPage) return;
+    if (autoAdvanceTimer) clearInterval(autoAdvanceTimer);
+    autoAdvanceTimer = setInterval(() => setSlide(currentSlide + 1), 5800);
+}
+
+if (isCarouselPage) {
+    prevButton.addEventListener('click', () => {
+        setSlide(currentSlide - 1);
+        resetAutoAdvance();
+    });
+    nextButton.addEventListener('click', () => {
+        setSlide(currentSlide + 1);
+        resetAutoAdvance();
+    });
+
+    slides.forEach((_, idx) => createIndicator(idx));
+    setSlide(0);
+    resetAutoAdvance();
+}
+
+// --- PLACE GALLERY MODAL ---
+const placeModal = document.getElementById('placeModal');
+const placeModalClose = document.getElementById('placeModalClose');
+const placeModalTitle = document.getElementById('placeModalTitle');
+const placeModalCopy = document.getElementById('placeModalCopy');
+const placePhotoGrid = document.getElementById('placePhotoGrid');
+const placeCards = document.querySelectorAll('.place-card');
+
+const placeCollections = {
+    chennai: {
+        title: 'Chennai Streets',
+        description: 'A filmic portrait of city streets, quiet alleys, and raw human moments.',
+        photos: ['img1.jpg','img2.jpg','img3.jpg','img4.jpg','img11.jpg','img12.jpg']
+    },
+    coastal: {
+        title: 'Coastal Journey',
+        description: 'Slow waves, warm light and intimate travel frames from the coastline.',
+        photos: ['img5.jpg','img6.jpg','img7.jpg','img8.jpg','img19.jpg']
+    },
+    nightlife: {
+        title: 'Night Life',
+        description: 'Soft neon, motion blur, and quiet scenes from the city after dark.',
+        photos: ['img9.jpg','img10.jpg','img14.jpg','img15.jpg','img16.jpg']
+    },
+    urban: {
+        title: 'Urban Portraits',
+        description: 'Architectural rhythm and candid people shots across bustling neighborhoods.',
+        photos: ['img13.jpg','img17.jpg','img18.jpg','img20.jpg']
+    },
+    documentary: {
+        title: 'Documentary Frames',
+        description: 'A poetic record of everyday life captured with cinematic clarity.',
+        photos: ['img21.jpg','img22.jpg','img14.jpg','img15.jpg']
+    }
+};
+
+function openPlaceModal(placeKey) {
+    const collection = placeCollections[placeKey];
+    if (!collection || !placeModal || !placePhotoGrid || !placeModalTitle || !placeModalCopy) return;
+
+    placeModalTitle.textContent = collection.title;
+    placeModalCopy.textContent = collection.description;
+    placePhotoGrid.innerHTML = '';
+
+    collection.photos.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = collection.title;
+        img.loading = 'lazy';
+        placePhotoGrid.appendChild(img);
+    });
+
+    placeModal.classList.add('active');
+    placeModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePlaceModal() {
+    if (!placeModal) return;
+    placeModal.classList.remove('active');
+    placeModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+placeCards.forEach(card => {
+    card.addEventListener('click', () => {
+        openPlaceModal(card.dataset.place);
+    });
+});
+
+placeModalClose?.addEventListener('click', closePlaceModal);
+placeModal?.addEventListener('click', (event) => {
+    if (event.target === placeModal) closePlaceModal();
 });

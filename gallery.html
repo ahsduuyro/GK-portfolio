@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Gallery | Ganesh Kumar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Work+Sans:wght@300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-block">
+            <a href="index.html" class="brand-logo">GK<span class="dot">.</span></a>
+        </div>
+        <nav class="nav-menu desktop-nav">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="gallery.html" class="nav-item">Gallery</a>
+            <a href="index.html#about" class="nav-item">About</a>
+            <a href="index.html#contact" class="nav-item">Contact</a>
+        </nav>
+        <button class="camera-dial-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <div class="dial-ridges"></div>
+            <div class="dial-face">
+                <span class="dial-indicator"></span>
+                <div class="dial-modes-icons">
+                    <span class="mode-lbl mode-m">M</span>
+                    <span class="mode-lbl mode-auto">AUTO</span>
+                    <span class="mode-lbl mode-scen">▶</span>
+                </div>
+            </div>
+        </button>
+        </button>
+    </header>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+        <nav class="mobile-menu-links">
+            <a href="index.html" class="mobile-nav-item">Home</a>
+            <a href="gallery.html" class="mobile-nav-item">Gallery</a>
+            <a href="index.html#about" class="mobile-nav-item">About</a>
+            <a href="index.html#contact" class="mobile-nav-item">Contact</a>
+        </nav>
+    </div>
+
+    <main class="work-section" style="padding-top: 160px;">
+        <h1 class="section-title">Gallery</h1>
+        <p class="gallery-intro">Browse locations by place and explore the full photo story for each destination.</p>
+
+        <div class="place-grid">
+            <a href="gallery-chennai.html" class="place-card">
+                <img src="img1.jpg" alt="Chennai Streets">
+                <div class="place-tag">Chennai Streets</div>
+                <div class="place-info">
+                    <span class="place-name">Chennai</span>
+                    <span class="place-count">12 Photos</span>
+                </div>
+            </a>
+            <a href="gallery-coastal.html" class="place-card">
+                <img src="img5.jpg" alt="Coastal Journey">
+                <div class="place-tag">Coastal Journey</div>
+                <div class="place-info">
+                    <span class="place-name">Coastal</span>
+                    <span class="place-count">9 Photos</span>
+                </div>
+            </a>
+            <a href="gallery-nightlife.html" class="place-card">
+                <img src="img9.jpg" alt="Night Life">
+                <div class="place-tag">Night Life</div>
+                <div class="place-info">
+                    <span class="place-name">Night</span>
+                    <span class="place-count">8 Photos</span>
+                </div>
+            </a>
+            <a href="gallery-urban.html" class="place-card">
+                <img src="img13.jpg" alt="Urban Portraits">
+                <div class="place-tag">Urban Portraits</div>
+                <div class="place-info">
+                    <span class="place-name">Urban</span>
+                    <span class="place-count">10 Photos</span>
+                </div>
+            </a>
+            <a href="gallery-documentary.html" class="place-card">
+                <img src="img17.jpg" alt="Documentary Frames">
+                <div class="place-tag">Documentary Frames</div>
+                <div class="place-info">
+                    <span class="place-name">Documentary</span>
+                    <span class="place-count">7 Photos</span>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 80px;">
+        <a href="mailto:hello@ganeshkumar.in" class="footer-email">hello@ganeshkumar.in</a>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/ganesh_manohar" target="_blank" class="footer-social-item">Instagram</a>
+            <a href="https://wa.me/919677225041" target="_blank" class="footer-social-item">WhatsApp</a>
+        </div>
+        <p class="copyright-text">&copy; 2026 Ganesh Kumar. Visual Diary.</p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="focus-ring-btn" aria-label="Scroll to top">
+        <div class="dslr-body-frame">
+            <div class="dslr-viewfinder-bump"></div>
+        </div>
+        <div class="lens-barrel">
+            <svg class="progress-ring" width="56" height="56">
+                <circle class="progress-ring__circle-bg" cx="28" cy="28" r="24" stroke-width="2" fill="transparent"/>
+                <circle id="scrollProgressCircle" class="progress-ring__circle" cx="28" cy="28" r="24" stroke-width="2" fill="transparent"/>
+            </svg>
+            <div class="lens-shutter-dot">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </div>
+        </div>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

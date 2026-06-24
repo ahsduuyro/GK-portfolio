@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Night Life | Ganesh Kumar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Work+Sans:wght@300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-block">
+            <a href="index.html" class="brand-logo">GK<span class="dot">.</span></a>
+        </div>
+        <nav class="nav-menu desktop-nav">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="gallery.html" class="nav-item">Gallery</a>
+            <a href="index.html#about" class="nav-item">About</a>
+            <a href="index.html#contact" class="nav-item">Contact</a>
+        </nav>
+        <button class="camera-dial-toggle" id="menuToggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+            <div class="dial-ridges"></div>
+            <div class="dial-face">
+                <span class="dial-indicator"></span>
+                <div class="dial-modes-icons">
+                    <span class="mode-lbl mode-m">M</span>
+                    <span class="mode-lbl mode-auto">AUTO</span>
+                    <span class="mode-lbl mode-scen">▶</span>
+                </div>
+            </div>
+        </button>
+        </button>
+    </header>
+
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+        <nav class="mobile-menu-links">
+            <a href="index.html" class="mobile-nav-item">Home</a>
+            <a href="gallery.html" class="mobile-nav-item">Gallery</a>
+            <a href="index.html#about" class="mobile-nav-item">About</a>
+            <a href="index.html#contact" class="mobile-nav-item">Contact</a>
+        </nav>
+    </div>
+
+    <main class="work-section" style="padding-top: 160px;">
+        <h1 class="section-title">Night Life</h1>
+        <p class="gallery-intro">Neon tones, city lights and the stillness between motion. Download the nightlife story in crisp, cinematic detail.</p>
+
+        <div class="place-info-block" style="margin-bottom: 28px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between;">
+            <div>
+                <span class="place-count" style="font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55);">8 downloadable frames</span>
+                <p style="max-width: 720px; color: rgba(255,255,255,0.74); line-height: 1.8; margin-top: 10px;">Tap each image to keep a piece of the city after dark — all downloads are ready for immediate save.</p>
+            </div>
+            <a href="gallery.html" class="view-more-btn">Back to Gallery</a>
+        </div>
+
+        <div class="place-photo-grid">
+            <a href="img9.jpg" download>
+                <img src="img9.jpg" alt="Night life frame 1">
+            </a>
+            <a href="img10.jpg" download>
+                <img src="img10.jpg" alt="Night life frame 2">
+            </a>
+            <a href="img11.jpg" download>
+                <img src="img11.jpg" alt="Night life frame 3">
+            </a>
+            <a href="img12.jpg" download>
+                <img src="img12.jpg" alt="Night life frame 4">
+            </a>
+            <a href="img13.jpg" download>
+                <img src="img13.jpg" alt="Night life frame 5">
+            </a>
+            <a href="img14.jpg" download>
+                <img src="img14.jpg" alt="Night life frame 6">
+            </a>
+            <a href="img15.jpg" download>
+                <img src="img15.jpg" alt="Night life frame 7">
+            </a>
+            <a href="img16.jpg" download>
+                <img src="img16.jpg" alt="Night life frame 8">
+            </a>
+        </div>
+    </main>
+
+    <footer class="site-footer" style="margin-top: 80px;">
+        <a href="mailto:hello@ganeshkumar.in" class="footer-email">hello@ganeshkumar.in</a>
+        <div class="footer-social-links">
+            <a href="https://www.instagram.com/ganesh_manohar" target="_blank" class="footer-social-item">Instagram</a>
+            <a href="https://wa.me/919677225041" target="_blank" class="footer-social-item">WhatsApp</a>
+        </div>
+        <p class="copyright-text">&copy; 2026 Ganesh Kumar. Visual Diary.</p>
+    </footer>
+
+    <button id="scrollToTopBtn" class="focus-ring-btn" aria-label="Scroll to top">
+        <div class="dslr-body-frame">
+            <div class="dslr-viewfinder-bump"></div>
+        </div>
+        <div class="lens-barrel">
+            <svg class="progress-ring" width="56" height="56">
+                <circle class="progress-ring__circle-bg" cx="28" cy="28" r="24" stroke-width="2" fill="transparent"/>
+                <circle id="scrollProgressCircle" class="progress-ring__circle" cx="28" cy="28" r="24" stroke-width="2" fill="transparent"/>
+            </svg>
+            <div class="lens-shutter-dot">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </div>
+        </div>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
